@@ -1,71 +1,47 @@
-# Git Hush – Ignore & Exclude
+<h1><img src="img/icon.png" height="24"> Git Hush – Ignore & Exclude</h1>
 
-This is the README for your extension "Git Hush – Ignore & Exclude". After writing up a brief description, we recommend including the following sections.
+A Visual Studio Code extension to hide files from Git with a right-click – just for you, or for everyone.
+
+Every Git repo has a private ignore file, `.git/info/exclude`, that works like `.gitignore` but is never committed. It's perfect for your own scratch files, notes, and editor clutter. Git Hush makes it as easy to use as `.gitignore`.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Jump between `.gitignore` and its private counterpart with one click
+- Move a rule from one file to the other with a 💡︎ quick fix
+- Ignore files and folders from the Explorer right-click menu – click again to un-ignore
+- Works with `.gitattributes` and its private counterpart, `.git/info/attributes`
 
-For example if there is an image subfolder under your extension project workspace:
+Handles multiple selections, keeps rules sorted, never adds duplicates, and works in worktrees and submodules.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Usage
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Ignore (and un-ignore) a file
 
-## Requirements
+Right-click any file or folder in the Explorer and open the **Ignore** submenu:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **Ignore Locally** – adds it to `.git/info/exclude`, so it's hidden on your machine only
+- **Ignore for Everyone** – adds it to `.gitignore`, so it's hidden for everyone
 
-## Extension Settings
+Both options are toggles: if the path is already listed in that file, the same option removes it.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+<img src="img/context-menu.png" width="628" alt="Ignore submenu in the Explorer context menu">
 
-For example:
+### Jump between files
 
-This extension contributes the following settings:
+Open `.gitignore` and click **Open .git/info/exclude** at the top of the file. The exclude file has a matching link back. The same links work between `.gitattributes` and `.git/info/attributes`. Missing files are created for you.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+<img src="img/codelens.png" width="248" alt="CodeLens link at the top of .gitignore">
 
-## Known Issues
+### Move a rule
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Put your cursor on any rule in `.gitignore`, press <kbd>Ctrl</kbd>+<kbd>.</kbd> (<kbd>Cmd</kbd>+<kbd>.</kbd> on macOS), and choose **Move rule to local exclude**. From the exclude file, the quick fix moves it back.
 
-## Release Notes
+<img src="img/quick-fix.png" width="248" alt="Move rule quick fix in .gitignore">
 
-Users appreciate release notes as you update your extension.
+## Settings
 
-### 1.0.0
+- `gitHush.showInContextMenu` – toggle the **Ignore** submenu in the Explorer (default: on)
 
-Initial release of ...
+## Tip
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Install [Syler.ignore](https://marketplace.visualstudio.com/items?itemName=Syler.ignore) for syntax highlighting in these files.

@@ -1,23 +1,115 @@
 {
   "name": "git-hush",
   "displayName": "Git Hush – Ignore & Exclude",
-  "description": "lorem ipsum",
-  "version": "0.0.1",
+  "publisher": "munr0",
+  "description": "Jump between .gitignore and your private .git/info/exclude, and quickly move rules across. Right-click any file to ignore it from the context menu. Supports .gitattributes too.",
+  "keywords": [
+    "attributes",
+    "exclude",
+    "git",
+    "git exclude",
+    "git ignore",
+    "gitattributes",
+    "gitignore",
+    ".gitignore",
+    "hide files",
+    "ignore",
+    "info/exclude",
+    "local ignore",
+    "private ignore",
+    "reveal",
+    "scm",
+    "source control",
+    "untrack",
+    "untracked"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "icon": "img/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/munr0/vscode-git-hush.git"
+  },
   "engines": {
     "vscode": "^1.125.0"
   },
   "categories": [
-    "Other"
+    "SCM Providers"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:.git",
+    "onLanguage:ignore",
+    "onLanguage:properties"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "git-hush.helloWorld",
-        "title": "Hello World"
+        "command": "git-hush.openExclude",
+        "title": "Open Local Exclude (.git/info/exclude)",
+        "category": "Git Hush"
+      },
+      {
+        "command": "git-hush.openAttributes",
+        "title": "Open Local Attributes (.git/info/attributes)",
+        "category": "Git Hush"
+      },
+      {
+        "command": "git-hush.openGitignore",
+        "title": "Open .gitignore",
+        "category": "Git Hush"
+      },
+      {
+        "command": "git-hush.openGitattributes",
+        "title": "Open .gitattributes",
+        "category": "Git Hush"
+      },
+      {
+        "command": "git-hush.ignoreLocally",
+        "title": "Ignore Locally (.git/info/exclude)",
+        "category": "Git Hush"
+      },
+      {
+        "command": "git-hush.ignoreShared",
+        "title": "Ignore for Everyone (.gitignore)",
+        "category": "Git Hush"
       }
-    ]
+    ],
+    "submenus": [
+      {
+        "id": "git-hush.submenu",
+        "label": "Ignore"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "git-hush.submenu",
+          "group": "7_modification",
+          "when": "config.gitHush.showInContextMenu"
+        }
+      ],
+      "git-hush.submenu": [
+        {
+          "command": "git-hush.ignoreLocally",
+          "group": "ignore@1"
+        },
+        {
+          "command": "git-hush.ignoreShared",
+          "group": "ignore@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git Hush",
+      "properties": {
+        "gitHush.showInContextMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 'Ignore' submenu in the Explorer context menu."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -34,7 +126,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.125.0",
+    "@types/vscode": "1.125.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
     "typescript-eslint": "^8.61.1",
