@@ -1,5 +1,9 @@
 <h1><img src="img/icon.png" height="24"> Git Hush – Ignore & Exclude</h1>
 
+[![VS Marketplace](https://vsmarketplacebadges.dev/version-short/munr0.git-hush.svg)](https://marketplace.visualstudio.com/items?itemName=munr0.git-hush)
+[![Installs](https://vsmarketplacebadges.dev/installs-short/munr0.git-hush.svg)](https://marketplace.visualstudio.com/items?itemName=munr0.git-hush)
+[![License: MIT](https://img.shields.io/github/license/munr0/vscode-git-hush)](LICENSE)
+
 A Visual Studio Code extension to hide files from Git with a right-click – just for you, or for everyone.
 
 Every Git repo has a private ignore file, `.git/info/exclude`, that works like `.gitignore` but is never committed. It's perfect for your own scratch files, notes, and editor clutter. Git Hush makes it as easy to use as `.gitignore`.
